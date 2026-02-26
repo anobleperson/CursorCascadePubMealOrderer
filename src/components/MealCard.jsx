@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 
 export default function MealCard({ name, meal, addOrder }) {
   const [showModal, setShowModal] = useState(false);
+  const [showAdded, setShowAdded] = useState(false);
   const [custom, setCustom] = useState({});
   const [step, setStep] = useState(0);
 
@@ -17,6 +18,7 @@ export default function MealCard({ name, meal, addOrder }) {
       setCustom({});
     } else {
       addOrder({ name, custom: null, qty: 1 });
+      setShowAdded(true);
     }
   };
 
@@ -141,6 +143,20 @@ export default function MealCard({ name, meal, addOrder }) {
         Order
       </button>
       {showModal && ReactDOM.createPortal(modal, document.body)}
+      {showAdded && ReactDOM.createPortal(
+        <div className="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50">
+          <div className="bg-white p-4 rounded shadow max-w-xs w-full border-2 border-blue-600 text-center">
+            <h3 className="font-bold mb-3">{name} added!</h3>
+            <button
+              className="bg-blue-600 text-white px-6 py-1 rounded"
+              onClick={() => setShowAdded(false)}
+            >
+              OK
+            </button>
+          </div>
+        </div>,
+        document.body
+      )}
     </div>
   );
 } 
