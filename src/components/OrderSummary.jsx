@@ -37,16 +37,19 @@ export default function OrderSummary({
       <ul>
         {orders.map((order, i) => (
           <li key={i} className="flex items-center gap-2 mb-1">
+            <button
+              className="bg-red-500 text-white w-7 h-7 rounded font-bold"
+              onClick={() => order.qty <= 1 ? removeOrder(i) : updateOrder(i, { ...order, qty: order.qty - 1 })}
+            >
+              -
+            </button>
+            <button
+              className="bg-green-600 text-white w-7 h-7 rounded font-bold"
+              onClick={() => updateOrder(i, { ...order, qty: order.qty + 1 })}
+            >
+              +
+            </button>
             <span className="flex-1">{formatOrder(order)}</span>
-            <input
-              type="number"
-              min={1}
-              value={order.qty}
-              className="w-12 border rounded p-1"
-              onChange={(e) =>
-                updateOrder(i, { ...order, qty: Number(e.target.value) })
-              }
-            />
             <button
               className="text-red-500"
               onClick={() => removeOrder(i)}

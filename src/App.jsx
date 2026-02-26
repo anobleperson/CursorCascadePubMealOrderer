@@ -7,7 +7,17 @@ export default function App() {
   const [orders, setOrders] = useState([]);
 
   const addOrder = (order) => {
-    setOrders((prev) => [...prev, order]);
+    setOrders((prev) => {
+      const existingIndex = prev.findIndex(
+        (o) => o.name === order.name && JSON.stringify(o.custom) === JSON.stringify(order.custom)
+      );
+      if (existingIndex !== -1) {
+        return prev.map((o, i) =>
+          i === existingIndex ? { ...o, qty: o.qty + order.qty } : o
+        );
+      }
+      return [...prev, order];
+    });
   };
 
   const updateOrder = (index, newOrder) => {
