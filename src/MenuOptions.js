@@ -42,7 +42,7 @@ const meals = {
         type: 'multi',
         variations: [
             { name: 'Size', options: ['Small', 'Large'] },
-            { name: 'Sides', options: ['Chips & Salad', 'Veggies'] }
+            { name: 'Sides', options: ['Chips & Salad', 'Veggies', 'Salad Only'] }
         ],
         description: 'Free Range chicken breast served crumbed or pan-fried (gf) with house-made Napoli sauce, ham & mozzarella, served with salad & beer battered fries, or seasonal vegetables'
     },
@@ -71,6 +71,11 @@ const meals = {
             { name: 'Sauce', options: ['Gravy', 'Mushroom', 'Pepper', 'Aioli'] }
         ],
         description: 'Bowl of beer battered chips'
+    },
+    'Caesar Salad': {
+        type: 'single',
+        variations: [],
+        description: 'Caesar salad'
     },
     'Choc fudge Brownie': {
         type: 'single',
